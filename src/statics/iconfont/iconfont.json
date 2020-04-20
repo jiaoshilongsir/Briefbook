@@ -1,0 +1,59 @@
+{
+  "id": "1736602",
+  "name": "jsapp",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "简书图标
+",
+  "glyphs": [
+    {
+      "icon_id": "2932873",
+      "name": "钻石",
+      "font_class": "zuanshi",
+      "unicode": "e811",
+      "unicode_decimal": 59409
+    },
+    {
+      "icon_id": "12476208",
+      "name": "对话框",
+      "font_class": "duihuakuang",
+      "unicode": "e6cd",
+      "unicode_decimal": 59085
+    },
+    {
+      "icon_id": "12755270",
+      "name": "心 爱心 - 副本",
+      "font_class": "xinaixin-fuben",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "2152145",
+      "name": "刷新",
+      "font_class": "shuaxin",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "49851",
+      "name": "放大镜",
+      "font_class": "41",
+      "unicode": "e62b",
+      "unicode_decimal": 58923
+    },
+    {
+      "icon_id": "1621077",
+      "name": "Aa",
+      "font_class": "Aa",
+      "unicode": "e636",
+      "unicode_decimal": 58934
+    },
+    {
+      "icon_id": "12592147",
+      "name": "羽毛笔",
+      "font_class": "yumaobi",
+      "unicode": "e6e5",
+      "unicode_decimal": 59109
+    }
+  ]
+}
