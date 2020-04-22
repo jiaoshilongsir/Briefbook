@@ -3,6 +3,7 @@ import logoPic from './../../statics/logo.png'
 export const HeaderWrapper=styled.div`
     height:58px;
     position:relative;
+    z-index:0;
     border-bottom:1px solid #000;
 `;
 export const Logo=styled.a.attrs({
@@ -32,7 +33,11 @@ color:#333;
     }
     &.right{
         float:right;
+        cursor:pointer;
         color:#969696;
+    }
+    &.right:hover{
+        color:red;
     }
     &.active{
         color:#ea6f5a;

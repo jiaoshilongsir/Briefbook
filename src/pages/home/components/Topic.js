@@ -1,15 +1,23 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import {connect} from 'react-redux'
 import {TopicWrapper,TopicItem} from './../style.js'
-class Topic extends Component {
+class Topic extends PureComponent {
     render() {
-        let {topicList}=this.props;
-        const newtopicList=topicList.toJS();
-        let NewTopicList=newtopicList.map(value=>{
+        let {topicList,topicJson}=this.props;
+        console.log('toppicJsonn',topicJson)
+        let NewTopicList=topicJson.map(value=>{
             return(
-                <TopicItem key={value.id}>
-                    <img src={value.imgsrc} className='topicImg' alt='简书'/>
-                    {value.title}
+                <TopicItem key={value.get('id')}>
+                    {topicList.map(item=>{
+                            if(item.get('id')===value.get('id')){
+                                return (
+                                    <img src={item.get('imgsrc')} className='topicImg' alt='' key={item.get('id')}/>  
+                                )
+                            }else{
+                                return false;
+                            }
+                    })}
+                    {value.get('title')}
                 </TopicItem>
             )
         })
@@ -22,7 +30,8 @@ class Topic extends Component {
 }
 const mapStateToProps = (state, ownProps) => {
     return{
-        topicList:state.getIn(['homeReducer','topicList'])
+        topicList:state.getIn(['homeReducer','topicList']),
+        topicJson:state.getIn(['homeReducer','topicJson'])
     }
 }
 const mapDispatchToProps=(dispatch,oenProps)=>{

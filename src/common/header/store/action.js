@@ -14,7 +14,7 @@ export const search_blur=()=>{
 export const getList=()=>{
     return (dispatch)=>{
         dispatch(getList_loading())
-        axios.get('/mock/header.json')
+        axios.get('/api/header.json')
         .then((res)=>{
             dispatch(getList_success(res.data.data))
         })

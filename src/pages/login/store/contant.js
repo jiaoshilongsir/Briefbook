@@ -1,0 +1,2 @@
+export const GET_LOGIN_DATA='GET_LOGIN_DATA'
+export const EXIT_LOGIN='EXIT_LOGIN'

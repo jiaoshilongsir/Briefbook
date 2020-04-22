@@ -3,8 +3,10 @@ import {HeaderWrapper,Logo,Nav,NavItem,NavSearch,Addition,
         Button,SearchWrapper,SearchInfo,SearchInfoTitle,
         SearchInfoSwitch,SearchInfoItem,SearchInfoList} from './style.js'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import {CSSTransition} from 'react-transition-group'
 import * as actions from './store/action.js'
+import {exitlogin} from './../../pages/login/store/action.js'
 // 无状态组件性能较高
 class Header extends Component{
     constructor(props){
@@ -20,7 +22,7 @@ class Header extends Component{
         console.dir('sdsdsad',newList)
         for(let i=(page-1)*10;i<page*10;i++){
             pageList.push(
-                <SearchInfoItem key={newList[i]}>{newList[i]}</SearchInfoItem>
+                <SearchInfoItem key={i}>{newList[i]}</SearchInfoItem>
             )
         }
         if(focused||mouseIn){
@@ -30,7 +32,7 @@ class Header extends Component{
                 <SearchInfoTitle>
                     热门搜索
                     <SearchInfoSwitch onClick={()=>handleChangePage(page,titlePage,this.spinIcon)}>
-                         <span ref={(icon)=>{this.spinIcon=icon}} class="iconfont huyian spin">&#xe613;</span> 换一换
+                         <span ref={(icon)=>{this.spinIcon=icon}} className="iconfont huyian spin">&#xe613;</span> 换一换
                     </SearchInfoSwitch>
                 </SearchInfoTitle>
                 <SearchInfoList>
@@ -43,7 +45,7 @@ class Header extends Component{
         }
     }
     render(){ 
-        const {focused,list,handleInputFocus,handleInputBlur} = this.props;
+        const {focused,list,handleInputFocus,handleInputBlur,isLogin} = this.props;
    
     return (
             <HeaderWrapper>
@@ -51,7 +53,7 @@ class Header extends Component{
                 <Nav>
                     <NavItem className='left active'>首页</NavItem>
                     <NavItem className='left'>下载App</NavItem>
-                    <NavItem className='right'>登录</NavItem>
+                    {isLogin? <NavItem className='right' onClick={this.props.exitLogin}>退出</NavItem>:<Link to='/login'><NavItem className='right'>登录</NavItem></Link>}
                     <NavItem className='right'>
                         <i className='iconfont'>&#xe636;</i>
                     </NavItem>
@@ -72,9 +74,11 @@ class Header extends Component{
                     </SearchWrapper>
                 </Nav>
                 <Addition>
+                    <Link to='/writer'>
                     <Button className='writting'>
                     <i className='iconfont'>&#xe6e5;</i>&nbsp;
                         写文章</Button>
+                    </Link>
                     <Button className='reg'>注册</Button>
                 </Addition>
             </HeaderWrapper>
@@ -91,7 +95,8 @@ const mapStateToProps = (state, ownProps) => {
         list:state.getIn(['reducer','list']),
         page:state.getIn(['reducer','page']),
         mouseIn:state.getIn(['reducer','mouseIn']),
-        titlePage:state.getIn(['reducer','titlePage'])
+        titlePage:state.getIn(['reducer','titlePage']),
+        isLogin:state.getIn(['loginReducer','isLogin'])
     }
 }
 const mapDispatchToProps = (dispatch,ownProps)=>{
@@ -122,7 +127,10 @@ const mapDispatchToProps = (dispatch,ownProps)=>{
 			}else {
 				dispatch(actions.changePage(1));
 			}
-		}
+        },
+        exitLogin(){
+            dispatch(exitlogin())
+        }
     }
 }
 
